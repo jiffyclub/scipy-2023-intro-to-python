@@ -1,6 +1,6 @@
-# Introduction to Python at SciPy 2021
+# Introduction to Python at SciPy 2023
 
-Monday, July 12 from 9:00 AM - 1:00 PM CDT
+Monday, July 10 from 8:00 AM - 12:00 PM CDT
 
 This tutorial is a gentle introduction to Python for folks who are completely
 new to it and may not have much experience programming.
@@ -15,7 +15,7 @@ vocabulary of Python so that you can understand Python documentation and
 interpret code written by others.
 
 See the tutorial description on the conference website
-[here](https://www.scipy2021.scipy.org/tutorial-information).
+[here](https://cfp.scipy.org/2023/talk/CDRJYE/).
 
 ## Setup Instructions
 
@@ -24,14 +24,14 @@ See the tutorial description on the conference website
 
 If you don't already have Anaconda installed, download and install Anaconda
 for **Python 3** (_not Python 2_):
-https://www.anaconda.com/products/individual.
+https://www.anaconda.com/download.
 
 If you're prompted to install [VS Code](https://code.visualstudio.com/)
 we recommend you **do** install it unless you already have a code editor
 you prefer.
 
 After installing Anaconda you can test your installation using
-[these instructions](http://docs.anaconda.com/anaconda/user-guide/getting-started/#write-a-python-program-using-anaconda-prompt-or-terminal).
+[these instructions](https://docs.anaconda.com/free/anaconda/getting-started/hello-world/#write-a-python-program-using-a-cli).
 
 
 If you'd like to do your own setup, we'll be using the following Python libraries:
@@ -42,7 +42,7 @@ If you'd like to do your own setup, we'll be using the following Python librarie
 
 If you're not able to get Anaconda installed/working you can
 still follow along in class by going to this URL and launching the notebooks:
-https://mybinder.org/v2/gh/jiffyclub/scipy-2021-intro-to-python/HEAD.
+https://mybinder.org/v2/gh/jiffyclub/scipy-2023-intro-to-python/HEAD.
 However, note that Binder will not persist your work and will "forget" about
 it after a period of idleness.
 Make sure to download your work as soon as you finish a lesson so you can
@@ -64,7 +64,7 @@ help you get more acquainted with Python and other programming fundamentals.
   - [Programming in Python Lesson](http://swcarpentry.github.io/python-novice-inflammation/)
   - [The Unix Shell Lesson](http://swcarpentry.github.io/shell-novice/)
 - [SciPy Lecture Notes - Commonly Used Packages](https://scipy-lectures.org/)
-- [How to Think Like a Computer Scientist Tutorial](https://runestone.academy/runestone/static/thinkcspy/index.html)
+- [How to Think Like a Computer Scientist Tutorial](https://runestone.academy/ns/books/published/thinkcspy/index.html)
 
 
 ## Links to Advanced Topics
