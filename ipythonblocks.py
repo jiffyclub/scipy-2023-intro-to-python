@@ -61,9 +61,9 @@ _DOUBLE_SLICE = 'double slice'
 
 _SMALLEST_BLOCK = 1
 
-_POST_URL = 'http://www.ipythonblocks.org/post'
-_GET_URL_PUBLIC = 'http://www.ipythonblocks.org/get/{0}'
-_GET_URL_SECRET = 'http://www.ipythonblocks.org/get/secret/{0}'
+# _POST_URL = 'http://www.ipythonblocks.org/post'
+# _GET_URL_PUBLIC = 'http://www.ipythonblocks.org/get/{0}'
+# _GET_URL_SECRET = 'http://www.ipythonblocks.org/get/secret/{0}'
 
 
 class InvalidColorSpec(Exception):
@@ -845,35 +845,35 @@ class BlockGrid(object):
 
         return req
 
-    def post_to_web(self, code_cells=None, secret=False):
-        """
-        Post this grid to ipythonblocks.org and return a URL to
-        view the grid on the web.
+    # def post_to_web(self, code_cells=None, secret=False):
+    #     """
+    #     Post this grid to ipythonblocks.org and return a URL to
+    #     view the grid on the web.
 
-        Parameters
-        ----------
-        code_cells : int, str, or slice, optional
-            Specify any code cells to be sent and displayed with the grid.
-            You can specify a single cell, a Python, slice, or a combination
-            as a string separated by commas.
+    #     Parameters
+    #     ----------
+    #     code_cells : int, str, or slice, optional
+    #         Specify any code cells to be sent and displayed with the grid.
+    #         You can specify a single cell, a Python, slice, or a combination
+    #         as a string separated by commas.
 
-            For example, '3,5,8:10' would send cells 3, 5, 8, and 9.
-        secret : bool, optional
-            If True, this grid will not be shown randomly on ipythonblocks.org.
+    #         For example, '3,5,8:10' would send cells 3, 5, 8, and 9.
+    #     secret : bool, optional
+    #         If True, this grid will not be shown randomly on ipythonblocks.org.
 
-        Returns
-        -------
-        url : str
-            URL to view your grid on ipythonblocks.org.
+    #     Returns
+    #     -------
+    #     url : str
+    #         URL to view your grid on ipythonblocks.org.
 
-        """
-        import requests
+    #     """
+    #     import requests
 
-        req = self._construct_post_request(code_cells, secret)
-        response = requests.post(_POST_URL, data=json.dumps(req))
-        response.raise_for_status()
+    #     req = self._construct_post_request(code_cells, secret)
+    #     response = requests.post(_POST_URL, data=json.dumps(req))
+    #     response.raise_for_status()
 
-        return response.json()['url']
+    #     return response.json()['url']
 
     def _load_simple_grid(self, block_data):
         """
@@ -895,36 +895,36 @@ class BlockGrid(object):
                 self._grid[row][col].rgb = block_data[row][col][:3]
                 self._grid[row][col].size = block_data[row][col][3]
 
-    @classmethod
-    def from_web(cls, grid_id, secret=False):
-        """
-        Make a new BlockGrid from a grid on ipythonblocks.org.
+    # @classmethod
+    # def from_web(cls, grid_id, secret=False):
+    #     """
+    #     Make a new BlockGrid from a grid on ipythonblocks.org.
 
-        Parameters
-        ----------
-        grid_id : str
-            ID of a grid on ipythonblocks.org. This will be the part of the
-            URL after 'ipythonblocks.org/'.
-        secret : bool, optional
-            Whether or not the grid on ipythonblocks.org is secret.
+    #     Parameters
+    #     ----------
+    #     grid_id : str
+    #         ID of a grid on ipythonblocks.org. This will be the part of the
+    #         URL after 'ipythonblocks.org/'.
+    #     secret : bool, optional
+    #         Whether or not the grid on ipythonblocks.org is secret.
 
-        Returns
-        -------
-        grid : BlockGrid
+    #     Returns
+    #     -------
+    #     grid : BlockGrid
 
-        """
-        import requests
+    #     """
+    #     import requests
 
-        get_url = _GET_URL_PUBLIC if not secret else _GET_URL_SECRET
-        resp = requests.get(get_url.format(grid_id))
-        resp.raise_for_status()
-        grid_spec = resp.json()
+    #     get_url = _GET_URL_PUBLIC if not secret else _GET_URL_SECRET
+    #     resp = requests.get(get_url.format(grid_id))
+    #     resp.raise_for_status()
+    #     grid_spec = resp.json()
 
-        grid = cls(grid_spec['width'], grid_spec['height'],
-                   lines_on=grid_spec['lines_on'])
-        grid._load_simple_grid(grid_spec['blocks'])
+    #     grid = cls(grid_spec['width'], grid_spec['height'],
+    #                lines_on=grid_spec['lines_on'])
+    #     grid._load_simple_grid(grid_spec['blocks'])
 
-        return grid
+    #     return grid
 
 
 class Pixel(Block):
@@ -1123,38 +1123,38 @@ class ImageGrid(BlockGrid):
 
         return _TABLE.format(uuid.uuid4(), int(self._lines_on), html)
 
-    @classmethod
-    def from_web(cls, grid_id, secret=False, origin='lower-left'):
-        """
-        Make a new ImageGrid from a grid on ipythonblocks.org.
+    # @classmethod
+    # def from_web(cls, grid_id, secret=False, origin='lower-left'):
+    #     """
+    #     Make a new ImageGrid from a grid on ipythonblocks.org.
 
-        Parameters
-        ----------
-        grid_id : str
-            ID of a grid on ipythonblocks.org. This will be the part of the
-            URL after 'ipythonblocks.org/'.
-        secret : bool, optional
-            Whether or not the grid on ipythonblocks.org is secret.
-        origin : {'lower-left', 'upper-left'}, optional
-            Set the location of the grid origin.
+    #     Parameters
+    #     ----------
+    #     grid_id : str
+    #         ID of a grid on ipythonblocks.org. This will be the part of the
+    #         URL after 'ipythonblocks.org/'.
+    #     secret : bool, optional
+    #         Whether or not the grid on ipythonblocks.org is secret.
+    #     origin : {'lower-left', 'upper-left'}, optional
+    #         Set the location of the grid origin.
 
-        Returns
-        -------
-        grid : ImageGrid
+    #     Returns
+    #     -------
+    #     grid : ImageGrid
 
-        """
-        import requests
+    #     """
+    #     import requests
 
-        get_url = _GET_URL_PUBLIC if not secret else _GET_URL_SECRET
-        resp = requests.get(get_url.format(grid_id))
-        resp.raise_for_status()
-        grid_spec = resp.json()
+    #     get_url = _GET_URL_PUBLIC if not secret else _GET_URL_SECRET
+    #     resp = requests.get(get_url.format(grid_id))
+    #     resp.raise_for_status()
+    #     grid_spec = resp.json()
 
-        grid = cls(grid_spec['width'], grid_spec['height'],
-                   lines_on=grid_spec['lines_on'], origin=origin)
-        grid._load_simple_grid(grid_spec['blocks'])
+    #     grid = cls(grid_spec['width'], grid_spec['height'],
+    #                lines_on=grid_spec['lines_on'], origin=origin)
+    #     grid._load_simple_grid(grid_spec['blocks'])
 
-        return grid
+    #     return grid
 
 
 # Convenience wrapper for color tuples with attribute access for the
