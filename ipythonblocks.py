@@ -153,7 +153,7 @@ def _flatten(thing, ignore_types=(str,)):
     Adapted from Beazley's Python Cookbook.
 
     """
-    if isinstance(thing, collections.Iterable) and \
+    if isinstance(thing, collections.abc.Iterable) and \
             not isinstance(thing, ignore_types):
         for i in thing:
             for x in _flatten(i):
@@ -340,7 +340,7 @@ class Block(object):
         if isinstance(other, Block):
             self.rgb = other.rgb
             self.size = other.size
-        elif isinstance(other, collections.Sequence) and len(other) == 3:
+        elif isinstance(other, collections.abc.Sequence) and len(other) == 3:
             self.rgb = other
         else:
             errmsg = (
@@ -569,7 +569,7 @@ class BlockGrid(object):
             else:
                 raise TypeError('Cannot assign grid to single block.')
 
-        elif isinstance(value, (collections.Iterable, Block)):
+        elif isinstance(value, (collections.abc.Iterable, Block)):
             for b in _flatten(thing):
                 b._update(value)
 
