@@ -340,7 +340,7 @@ class Block(object):
         if isinstance(other, Block):
             self.rgb = other.rgb
             self.size = other.size
-        elif isinstance(other, collections.Sequence) and len(other) == 3:
+        elif isinstance(other, collections.abc.Sequence) and len(other) == 3:
             self.rgb = other
         else:
             errmsg = (
